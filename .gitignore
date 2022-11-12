@@ -5,3 +5,4 @@ __pycache__
 *.pyc
 tdd_notes.md
 /static
+.env
