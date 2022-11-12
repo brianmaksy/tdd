@@ -67,15 +67,7 @@ class NewVisitorTest(LiveServerTestCase):
         # The page updates again, and now shows both items on her list
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
         self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
-        self.fail('Finish the test!')
 
-        # Edith wonders whether the site will remember her list. Then she sees
-        # that the site has generated a unique URL for her -- there is some
-        # explanatory text to that effect.
-
-        # She visits that URL - her to-do list is still there.
-
-        # Satisfied, she goes back to sleep
         
     def test_multiple_users_can_start_lists_at_different_urls(self):
         # Edith starts a new to-do list
@@ -134,16 +126,5 @@ class NewVisitorTest(LiveServerTestCase):
                     raise e  
                 time.sleep(0.5)  
 
-class ListViewTest(TestCase):
-
-    def test_displays_all_items(self):
-        Item.objects.create(text='itemey 1')
-        Item.objects.create(text='itemey 2')
-
-        response = self.client.get('/lists/the-only-list-in-the-world/')
-
-        self.assertContains(response, 'itemey 1')  
-        self.assertContains(response, 'itemey 2')  
-        
 # if __name__ == '__main__':  
 #     unittest.main()
