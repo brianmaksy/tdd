@@ -1,5 +1,5 @@
 import time
-from django.test import LiveServerTestCase, TestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys 
 from selenium.common.exceptions import WebDriverException
@@ -10,7 +10,7 @@ from lists.models import Item
 
 MAX_WAIT = 10
 
-class NewVisitorTest(LiveServerTestCase):  
+class NewVisitorTest(StaticLiveServerTestCase):  
     # the live server test case gives us port 80000 
 
     def setUp(self): # special methods 
@@ -91,7 +91,7 @@ class NewVisitorTest(LiveServerTestCase):
             512,
             delta=10    
         )
-        
+
     def test_multiple_users_can_start_lists_at_different_urls(self):
         # Edith starts a new to-do list
         self.browser.get(self.live_server_url)
