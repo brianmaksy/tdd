@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn server for staging.noslackmak.com
+
+[Service]
+Restart=on-failure
+User=trinovantes
+WorkingDirectory=/home/trinovantes/sites/DOMAIN
+EnvironmentFile=/home/trinovantes/sites/DOMAIN/.env
+
+ExecStart=/home/trinovantes/sites/DOMAIN/virtualenv/bin/gunicorn \
+    --bind unix:/tmp/DOMAIN.socket \
+    superlists.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
