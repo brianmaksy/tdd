@@ -1,5 +1,5 @@
 [Unit]
-Description=Gunicorn server for staging.noslackmak.com
+Description=Gunicorn server for noslackmak.com 
 
 [Service]
 Restart=on-failure

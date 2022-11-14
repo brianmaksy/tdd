@@ -1,11 +1,17 @@
 import random
 from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run
+# import paramiko, os
+# paramiko.common.logging.basicConfig(level=paramiko.common.DEBUG) 
+# env.use_ssh_config = True
+# env.key_filename = '/Users/bmak/.ssh/id_rsa_do.pub'
+
 
 REPO_URL = 'https://github.com/brianmaksy/tdd.git'  
+HOST = 'noslackmak.com'
 
 def deploy():
-    site_folder = f'/home/{env.user}/sites/{env.host}'  
+    site_folder = f'/home/{env.user}/sites/{HOST}'  
     run(f'mkdir -p {site_folder}')  
     with cd(site_folder):  
         _get_latest_source()
@@ -30,7 +36,7 @@ def _update_virtualenv():
 
 def _create_or_update_dotenv():
     append('.env', 'DJANGO_DEBUG_FALSE=y')  
-    append('.env', f'SITENAME={env.host}')
+    append('.env', f'SITENAME={HOST}')
     current_contents = run('cat .env')  
     if 'DJANGO_SECRET_KEY' not in current_contents:  
         new_secret = ''.join(random.SystemRandom().choices(  
