@@ -42,3 +42,6 @@ class ListAndItemModelsTest(TestCase):
             item.save()
             item.full_clean() # to manually run full validation. 
             
+    def test_get_absolute_url(self):
+        list_ = List.objects.create()
+        self.assertEqual(list_.get_absolute_url(), f'/lists/{list_.id}/')
