@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.urls import resolve
 from django.utils.html import escape
 from django.template.loader import render_to_string
+from lists.forms import ItemForm
 from lists.views import home_page
 from lists.models import Item, List
 
@@ -33,6 +34,10 @@ class ListViewTest(TestCase):
         list_ = List.objects.create()
         response = self.client.get(f'/lists/{list_.id}/')
         self.assertTemplateUsed(response, 'list.html')
+        
+    def test_home_page_uses_item_form(self):
+        response = self.client.get('/')
+        self.assertIsInstance(response.context['form'], ItemForm)  
 
     def test_displays_only_items_for_that_list(self):
         correct_list = List.objects.create()
