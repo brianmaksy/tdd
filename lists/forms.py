@@ -10,8 +10,9 @@ class ItemForm(forms.models.ModelForm):
     class Meta:
         '''In Meta we specify which model the form is for, and which fields (of the model) we want it to use.'''
         model = Item
-        fields = ('text',) 
+        fields = ('text',) # where name="text" is obtained? # the type below needs to match the type of 'text' in models.List (it is indeed a TextField)
         widgets = {
+            # type="text" is from this. Quite sure. 
             'text': forms.fields.TextInput(attrs={
                 'placeholder': 'Enter a to-do item',
                 'class': 'form-control input-lg',
