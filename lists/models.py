@@ -9,3 +9,8 @@ class List(models.Model):
 class Item(models.Model):
     text = models.TextField(default='')
     list = models.ForeignKey(List, default=None)
+    
+    # meta as in metadata?! https://stackoverflow.com/questions/10344197/how-does-djangos-nested-meta-class-work 
+    # see second answer 
+    class Meta:
+        unique_together = ('list', 'text')
