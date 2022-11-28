@@ -14,12 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
-
+from django.contrib.auth.views import logout
 from accounts import views 
 
 urlpatterns = [
     url(r'^send_login_email$', views.send_login_email, name='send_login_email'),
     url(r'^login$', views.login, name='login'), # no need to add param (i.e. words after '=')
+    url(r'^logout$', logout, {'next_page': '/'}, name='logout'), # method seems deprecated. 
+    # use ?next_page=/ instead in html? https://stackoverflow.com/questions/5315100/how-to-configure-where-to-redirect-after-a-log-out-in-django 
 ]
 
